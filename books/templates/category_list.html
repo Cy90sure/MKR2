@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Categories</h1>
+    <ul class="list-group">
+        {% for category_data in categories_with_count %}
+            <li class="list-group-item">
+                <h2>{{ category_data.category.name }}</h2>
+                <p>Recipe Count: {{ category_data.count }}</p>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No categories available.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
