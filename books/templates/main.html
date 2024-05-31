@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Latest Recipes</h1>
+    <h1>Latest Books</h1>
     <ul class="list-group">
-        {% for recipe in recipes %}
+        {% for book in books %}
             <li class="list-group-item">
-                <h2>{{ recipe.title }}</h2>
-                <p>{{ recipe.description }}</p>
+                <h2>{{ book.title }}</h2>
+                <p>{{ book.description }}</p>
             </li>
         {% empty %}
-            <li class="list-group-item">No recipes available.</li>
+            <li class="list-group-item">No books available.</li>
         {% endfor %}
     </ul>
 {% endblock %}

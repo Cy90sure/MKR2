@@ -1,14 +1,14 @@
 from django.shortcuts import render
-from .models import Recipe, Category
+from .models import Book
 
 def main(request):
-    latest_recipes = Recipe.objects.all().order_by('-created_at')[:5]
-    return render(request, 'main.html', {'recipes': latest_recipes})
+    latest_books = Book.objects.all().order_by('-publication_date')[:5]
+    return render(request, 'main.html', {'books': latest_books})
 
 def category_list(request):
-    categories = Category.objects.all()
+    categories = Book.objects.values('category').distinct()
     categories_with_count = []
     for category in categories:
-        recipe_count = Recipe.objects.filter(category=category).count()
-        categories_with_count.append({'category': category, 'count': recipe_count})
+        book_count = Book.objects.filter(category=category['category']).count()
+        categories_with_count.append({'category': category['category'], 'count': book_count})
     return render(request, 'category_list.html', {'categories_with_count': categories_with_count})
